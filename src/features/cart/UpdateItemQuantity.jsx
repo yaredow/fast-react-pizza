@@ -2,22 +2,22 @@ import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
 import { decreaseitemQuantity, increaseitemQuantity } from "./CartSlice";
 
-function UpdateItemQuantity({ pizzaId }) {
+function UpdateItemQuantity({ pizzaId, currentQuantity }) {
   const dispatch = useDispatch();
 
-  function handleItemIncreamnet() {
-    dispatch(increaseitemQuantity(pizzaId));
-  }
-
-  function handleItemDecreament() {
-    dispatch(decreaseitemQuantity(pizzaId));
-  }
   return (
-    <div>
-      <Button type="round" onClick={handleItemIncreamnet}>
-        _
+    <div className="flex items-center gap-2 md:gap-3">
+      <Button
+        type="round"
+        onClick={() => dispatch(decreaseitemQuantity(pizzaId))}
+      >
+        -
       </Button>
-      <Button type="round" onClick={handleItemDecreament}>
+      <span className=" pt-2.5 text-sm font-semibold">{currentQuantity}</span>
+      <Button
+        type="round"
+        onClick={() => dispatch(increaseitemQuantity(pizzaId))}
+      >
         +
       </Button>
     </div>
